@@ -1,0 +1,34 @@
+Quality control statistics to look at for small genome Hi-C data
+
+Last updated: 2016/04/07 by Kate
+
+===
+
+Interchromasomal contact probability (ICP) and percent of long-range contacts (PLRC)
+
+- These are two statistics that can help convince you that your data is good
+- note that the thresholds of 1kb and 20kb were chosen for yeast/plasmodium and may not be applicable to all genomes
+- ICP: Kalhor et al 2011
+- ICP = total number of interchromosomal contacts / total number of intrachromosomal contacts >1 kb
+- Small ICP values indicate a better signal to noise ratio, since noise should be dominated by interchromosomal contacts
+- PLRC = total number of interchromosomal contacts and intrachromosomal contacts >20 kb / number of raw reads
+- larger PLRC values indicate more information about nonadjacent chromatin contacts
+- See values for Plasmodium data in the Supplement of Ay 2013
+
+Power Law fit
+
+- e.g. Figure 1B of Ay 2013
+- There should be an exponential relationship between how close two loci are in terms of genomic distance, and the probability of contacting
+- This makes sure that the relationship between contact probability and genomic distance is what we expect
+- fit-hi-c will generate these numbers
+
+===
+
+References
+
+Ay F, Bunnik EM, et al. Three-dimensional modeling of the P. falciparum genome during the erythrocytic cycle reveals a strong connection between genome architecture and gene expression. Genome Research. 2014;24(6):974-988. doi:10.1101/gr.169417.113.
+
+Kalhor R, Tjong H, Jayathilaka N, Alber F, Chen L. Solid-phase chromosome conformation capture for structural characterization of genome architectures. Nature biotechnology. 2011;30(1):90-98. doi:10.1038/nbt.2057.
+
+
+

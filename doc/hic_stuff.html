@@ -1,0 +1,68 @@
+<h2>Tools for Hi-C Analysis</h2>
+
+<a href="http://link.springer.com/article/10.1186/s13059-015-0745-7">
+<p>Also see Ferhat's review:</p></a>
+
+
+<h3>Read filtering</h3>
+
+<p><b>Read quality</b></p>
+
+<p>Not usually necessary to filter on read quality.</p>
+
+<p><b>Clipping sequences</b></p>
+
+<ul>
+<li>fastx_clipper</li>
+<li>cutadapt also exists</li>
+<li>seqprep is better but slower - does SW aligment</li>
+</ul>
+
+<p>principled way:</p>
+<ol>
+	<li>sequencing adapter from 3' end (seeing this a lot is a diagnostic for how good your library is)
+	<li>bridge adapter
+</ol>
+
+<p>quick way: just clip the bridge adapter(?)</p>
+
+<h3>Mapping</h3>
+
+<ul>
+<li>BWA-aln is fine for a lot of datasets.
+<li>As long as reads are clipped well, bowtie2 will work.
+<li>BWA-mem might be better long term since it should eliminate the need for iterative mapping.
+</ul>
+
+<p>Note: BWA-mem won't map 30-mers or shorter</p>
+
+<p>Iterative mapping: some argument about whether to start with long lengths and get shorter,
+or start short and get longer.</p>
+
+<h3>Building read pairs</h3>
+
+<p>?
+
+<h3>Normalization</h3>
+
+<p>ICE is allegedly numerically unstable for large matrices</p>
+
+<p>Knight-Ruiz is faster, (better?) We should figure out what it does</p>
+<p><a href="http://imajna.oxfordjournals.org/content/early/2012/10/26/imanum.drs019">Paper here</a></p>
+<p>Third option is simple way: dividing by square root of row sums or something like that.</p>
+
+<h3>Pipelines</h3>
+
+<ul>
+<li><b>HICUP</b> - lots of diagnostics, Ferhat says he likes it. Vijay isn't a fan. No visualization.
+<li><b>hicpro</b> - what works well: fragment level or bin level assignment is very fast, good ICE implementation, also does allele specific stuff. No visualization. Matrix output is long/sparse format. Annoying things: directory structure is very important, stupid stuff like that.
+<li><b>Juicebox/juicer</b> - is a pain pipeline wise
+<li><b>Hi-C-inspector</b> - visualization?
+</ul>
+
+<h3>Visualization</h3>
+
+<ul>
+<li><b>HiCPlotter</b> - nice rotated TAD figures with optional annotation tracks. Pretty straightforward to use, written in python. Requires evenly spaced bins (Kate has a hacked version for restriction fragment-binned data)
+<li><b>Juicebox</b>
+</ul>
